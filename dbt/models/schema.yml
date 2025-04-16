@@ -1,0 +1,50 @@
+version: 2
+
+sources:
+  - name: bigquery_dataset
+    schema: divvy_monthly_raw_data
+    tables:
+      - name: divvy_bikeshare_chicago_data_{{ var('table_var') }}
+        description: "Divvy Bikeshare Chicago trip data from 2020 to 2025"
+        columns:
+          - name: ride_id
+            description: "Unique identifier for the trip"
+            tests:
+              - unique
+              - not_null
+          - name: rideable_type
+            description: "Type of bike used"
+          - name: start_station_name
+            description: "Name of the starting station"
+          - name: start_station_id
+            description: "ID of the starting station"
+          - name: end_station_name
+            description: "Name of the ending station"
+          - name: end_station_id
+            description: "ID of the ending station"
+          - name: start_lat
+            description: "Latitude of the starting station"
+          - name: start_lng
+            description: "Longitude of the starting station"
+          - name: end_lat
+            description: "Latitude of the ending station"
+          - name: end_lng
+            description: "Longitude of the ending station"
+          - name: trip_duration_in_minutes
+            description: "Duration of the trip in minutes"
+          - name: start_date
+            description: "Start date of the trip"
+          - name: end_date
+            description: "End date of the trip"
+          - name: start_time
+            description: "Start time of the trip"
+          - name: end_time
+            description: "End time of the trip"
+          - name: start_timestamp
+            description: "Start timestamp of the trip"
+          - name: end_timestamp
+            description: "End timestamp of the trip"
+          - name: membership
+            description: "Type of membership"
+
+

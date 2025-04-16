@@ -1,0 +1,61 @@
+services:
+  # PostgreSQL database for Airflow metadata storage
+  postgres:
+    image: postgres:13  # Stable PostgreSQL version compatible with Airflow
+    environment:
+      - POSTGRES_USER=airflow      # Database user for Airflow connections
+      - POSTGRES_PASSWORD=airflow  # Database password (change in production)
+      - POSTGRES_DB=airflow       # Database name for Airflow metadata
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data  # Persistent storage for database
+
+  # Airflow webserver service - Provides the web UI
+  airflow-webserver:
+    build: .  # Build from local Dockerfile
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor                # Use local executor for task execution
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow  # Database connection
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False                  # Disable example DAGs
+      - AIRFLOW__CORE__LOAD_DEFAULT_CONNECTIONS=False       # Disable default connections
+      - AIRFLOW_UID=50000                                   # User ID for file permissions
+      - AIRFLOW_GID=0                                       # Group ID for file permissions
+      - AIRFLOW__LOGGING__BASE_LOG_FOLDER=/opt/airflow/logs # Log directory path
+    volumes:
+      - ../../airflow/dags:/opt/airflow/dags:z
+      - ../../airflow/logs:/opt/airflow/logs:z,U
+      - ../../airflow/plugins:/opt/airflow/plugins:z
+      - ../../dbt/divvy_bikeshare:/opt/airflow/dbt-project:z 
+      - /home/butterincode/.dbt:/home/airflow/.dbt/:z # Access dbt profile
+      - ../../airflow/.keys:/opt/airflow/keys:z  # Access keys
+    ports:
+      - "8080:8080"
+    user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-0}"
+    command: >
+      bash -c "
+        airflow db init &&
+        airflow users create --username admin --firstname Admin --lastname User --role Admin --email admin@example.com --password admin &&
+        airflow webserver 
+        "
+
+  # Airflow scheduler service - Monitors and triggers DAG runs
+  airflow-scheduler:
+    build: .  # Build from local Dockerfile
+    depends_on:
+      - airflow-webserver  # Ensure webserver is running first
+    restart: unless-stopped  # Automatically restart if container stops
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor                # Use local executor for task execution
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow  # Database connection
+      - AIRFLOW__LOGGING__BASE_LOG_FOLDER=/opt/airflow/logs # Log directory path
+    volumes:
+      - ../../airflow/dags:/opt/airflow/dags:rw
+      - ../../airflow/logs:/opt/airflow/logs:rw,U
+      - ../../airflow/plugins:/opt/airflow/plugins:rw
+      - ../../dbt/divvy_bikeshare:/opt/airflow/dbt-project:rw  # Access dbt project
+      - /home/butterincode/.dbt:/home/airflow/.dbt/:z # Access dbt profile
+      - ../../airflow/.keys:/opt/airflow/keys:rw  # Access keys
+    user: "${AIRFLOW_UID:-50000}:${AIRFLOW_GID:-0}"
+    command: scheduler
+
+volumes:
+  postgres-db-volume:

@@ -1,0 +1,28 @@
+# Core Airflow
+apache-airflow==2.5.0
+
+# Cloud Provider Packages
+apache-airflow-providers-microsoft-azure==5.1.0  # Azure integration
+apache-airflow-providers-amazon==6.0.0           # AWS integration
+apache-airflow-providers-google==10.1.1          # Google Cloud integration
+
+# Cloud Services SDKs
+azure-synapse-spark==0.7.0        # Azure Synapse Analytics
+google-cloud-storage==2.13.0      # Google Cloud Storage
+google-cloud-bigquery==3.11.4     # BigQuery integration
+
+# Data Transformation
+dbt-core==1.5.11                  # Core dbt functionality
+dbt-bigquery==1.5.11              # dbt BigQuery adapter
+
+# Data Processing
+pandas==2.0.3                     # Data manipulation
+pandas-gbq==0.19.2                # BigQuery pandas integration
+pyarrow==14.0.1                   # Apache Arrow implementation
+
+# Database Dependencies
+psycopg2-binary==2.9.9            # PostgreSQL adapter
+sqlalchemy==1.4.50                # SQL toolkit and ORM
+
+# Utilities
+python-dotenv==1.0.0              # Environment variable management

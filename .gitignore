@@ -1,0 +1,11 @@
+# DBT folders and files to ignore
+dbt/analyses/
+dbt/dbt_packages/
+dbt/logs/
+dbt/macros/
+dbt/seeds/
+dbt/snapshots/
+dbt/target/
+dbt/tests/
+dbt/secrets.yml
+dbt/variables.yml

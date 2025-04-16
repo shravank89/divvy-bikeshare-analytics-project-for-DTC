@@ -1,0 +1,29 @@
+name: 'bikeshare'
+version: '1.0.0'
+config-version: 2
+
+profile: 'bikeshare'
+
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_modules"
+
+models:
+  bikeshare:
+    staging:
+      +materialized: view
+      +schema: staging_data
+    intermediate:
+      +materialized: view
+      +schema: staging_data
+    marts:
+      +materialized: table
+      +schema: analytics_data
