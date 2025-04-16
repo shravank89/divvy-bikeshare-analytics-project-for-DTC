@@ -8,9 +8,9 @@ The platform ingests Divvy Bikeshare trip data from the public S3 bucket (https:
 # Architecture Components
 1. Data Ingestion: Airflow orchestrates periodic data downloads from the S3 bucket containing historical trip data
 2. Data Processing: Spark jobs process the raw data with help of spark pool in azure synapse and stores in bigquery DWH. 
-3. Data Transformation: dbt models transform raw data into consumption models for analytics
-4. Infrastructure: Docker containers for local development, Terraform for infrastructure provisioning
-5. Dashboarding: Looker Studio connects to Bigquery datawarehouse to visualize buisness insights
+3. Data Transformation: dbt models transform raw data into consumption models for analytics.
+4. Infrastructure: Docker containers for local development, Terraform for infrastructure provisioning.
+5. Dashboarding: Looker Studio connects to Bigquery datawarehouse to visualize buisness insights.
 
 # Implementation Details
 Infrastructure (Docker + Terraform)
@@ -63,3 +63,54 @@ The Looker dashboard would connect directly to Bigquery to visualize:
 
 # Link for Looker Public dashboard:
 https://lookerstudio.google.com/reporting/f2aa8cf5-ca80-4f57-bd25-7fd9d525f242
+
+# Project Directory Structure
+```
+.
+├── airflow/
+│   ├── dags/
+│   │   ├── azure-spark-transformation.py
+│   │   ├── bigquery-update.py
+│   │   ├── dbt_transformation.py
+│   │   ├── extract-data.py
+│   │   └── master-pipeline.py
+│   └── README.md
+├── architecture/
+│   ├── Divvy Bikeshare Analytical Project_ Complete pipeline representation.pdf
+│   └── divvy_bikeshare_architecture.svg
+├── dbt/
+│   ├── models/
+│   │   ├── intermediate/
+│   │   ├── marts/
+│   │   ├── staging/
+│   │   └── schema.yml
+│   ├── dbt_project.yml
+│   └── README.md
+├── docker/
+│   └── airflow/
+│       ├── Dockerfile
+│       ├── docker-compose.yml
+│       ├── requirements.txt
+│       └── README.md
+├── looker/
+│   ├── dashboard_screenshot.png
+│   └── README.md
+├── spark/
+│   ├── spark-job.py
+│   └── README.md
+├── terraform/
+│   ├── azure/
+│   │   ├── main.tf
+│   │   ├── outputs.tf
+│   │   └── variables.tf
+│   ├── bashscripts/
+│   │   ├── deploy_azure.sh
+│   │   └── deploy_gcp.sh
+│   ├── gcp-bigquery/
+│   │   ├── main.tf
+│   │   ├── outputs.tf
+│   │   └── variables.tf
+│   └── README.md
+├── .gitignore
+└── README.md
+```

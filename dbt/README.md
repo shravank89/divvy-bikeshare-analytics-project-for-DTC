@@ -28,15 +28,11 @@ This directory contains the dbt models that transform Divvy Bikeshare data into 
 #### Station Popularity Analysis
 - **station_popularity**: Measures station utilization
   - Tracks rides started and ended at each station
-  - Calculates average ride duration and distance per station
   - Identifies high-traffic stations
 
 #### User Behavior Analysis
 - **user_behavior_analysis**: Compares member vs casual rider patterns
   - Analyzes ride patterns by user type
-  - Tracks weekend vs weekday usage
-  - Calculates average speed and distance metrics
-  - Identifies preferred riding times per user type
 
 ## Model Dependencies
 

@@ -49,8 +49,7 @@ The job performs the following transformations:
 5. Organizes output by year/month partitions
 
 ## Usage
-
-Run the Spark job using the airflow DAG divvy_bikeshare_pyspark_transformation
+We need to place the spark job in any store accessible to azure synapse spark pool and then we can un the Spark job using the airflow DAG divvy_bikeshare_pyspark_transformation, it submits the spark job to azure synapse spark pool.
 
 ### Arguments
 - `--input_path`: Path to input CSV file(s)

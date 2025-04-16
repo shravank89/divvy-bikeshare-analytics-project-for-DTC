@@ -1,4 +1,4 @@
-client_id       = "need to put azure client id"
-client_secret   = "need to put azure client_secret"   
-subscription_id = "need to put azure subscription_id"
-tenant_id       = "need to put azure tenant_id"
+client_id       = ARM_CLIENT_ID
+client_secret   = ARM_CLIENT_SECRET   
+subscription_id = ARM_SUBSCRIPTION_ID
+tenant_id       = ARM_TENANT_ID

@@ -45,20 +45,16 @@ extract >> transform >> load >> dbt
 - `input_directory`: Directory containing raw data
 - `output_directory`: Directory for transformed data
 
+### dbt Profiles
+- `profile.yml`: dbt profile configuration
+- `dbt_vars.yml`: dbt variable configuration
+
 ## Scheduling
 
-The master pipeline is configured for manual triggering (schedule_interval=None) with the ability to process historical data from April 2020 onwards. Each sub-DAG inherits this configuration and can also be triggered independently if needed.
+The master pipeline is configured for manual triggering (schedule_interval=@monthly) with the ability to process historical data from April 2020 onwards. Each sub-DAG inherits this configuration and can also be triggered independently if needed.
 
 ## Error Handling
 
 - All DAGs include retry mechanisms for transient failures
 - Email notifications on task failures
 - Comprehensive logging and error reporting
-
-## Development Guidelines
-
-1. Follow the existing DAG structure and naming conventions
-2. Ensure proper error handling and logging
-3. Test changes thoroughly in development environment
-4. Document any new variables or connections required
-5. Maintain backward compatibility when possible

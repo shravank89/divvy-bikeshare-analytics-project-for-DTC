@@ -29,7 +29,7 @@ Orchestrates three main services:
 ### requirements.txt
 Manages Python dependencies including:
 - Airflow core and provider packages
-- Cloud provider SDKs (Azure, AWS, Google)
+- Cloud provider SDKs (Azure, Google)
 - Data processing libraries (pandas, pyarrow)
 - DBT for data transformations
 
@@ -71,6 +71,5 @@ Key environment variables are set in docker-compose.yml:
 - User permissions (UID/GID)
 
 ## Security Notes
-- Default admin credentials should be changed in production
-- Sensitive information should be managed through Airflow's secrets backend
-- Volume permissions are configured for secure multi-user access
+- Default admin credentials should be changed in production scenarios.
+- Sensitive information is managed through Airflow's secrets backend

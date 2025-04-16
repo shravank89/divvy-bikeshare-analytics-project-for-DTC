@@ -23,7 +23,7 @@ default_args = {
 
 with DAG(
     dag_id='divvy_bikeshare_master_pipeline',
-    schedule_interval=None,
+    schedule_interval="@monthly",
     start_date=datetime(2020, 4, 1),
     catchup=False,
 ) as dag:

@@ -1,7 +1,7 @@
 # Divvy Bikeshare Analytics Dashboard
 
 ## Dashboard Overview
-This interactive dashboard provides comprehensive insights into the Divvy Bikeshare system's performance and usage patterns. The dashboard is built using Looker Studio (formerly Google Data Studio) and offers real-time analytics of bike-sharing data.
+This interactive dashboard provides comprehensive insights into the Divvy Bikeshare system's performance and usage patterns. The dashboard is built using Looker Studio and offers real-time analytics of bike-sharing data.
 
 ## Dashboard Link
 Access the live dashboard here: [Divvy Bikeshare Dashboard](https://lookerstudio.google.com/reporting/f2aa8cf5-ca80-4f57-bd25-7fd9d525f242)

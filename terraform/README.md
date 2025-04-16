@@ -31,7 +31,7 @@ The `gcp-bigquery/` directory includes Terraform configurations for provisioning
 ### Key Files:
 - `main.tf`: Defines the BigQuery datasets and tables to be provisioned.
 - `variables.tf`: Contains variables for configuring the BigQuery resources.
-- `terraform.tfstate` and `terraform.tfstate.backup`: State files that track the current state of the infrastructure.
+- `outputs.tf`: Specifies the outputs of the Terraform configuration.
 
 ### Deployment:
 Use the `deploy_gcp.sh` script in the `bash-scripts/` directory to deploy the GCP BigQuery infrastructure.
